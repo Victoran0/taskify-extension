@@ -1,0 +1,12 @@
+{
+    "manifest_version": 3,
+    "name": "To Do List",
+    "description": "A chrome extension that manages all your activities and thus serve as a todo list",
+    "version": "0.9.8",
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "js/background.js"
+    }
+}
