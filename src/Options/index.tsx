@@ -10,12 +10,27 @@ export const Options: React.FC  = () => {
     const [todo, setTodo] = useState<string>("")
     const [todos, setTodos] = useState<Todo[]>([])
     const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
+    const savedTodo: string[] = [];
+
+    const getSavedTodo = async (): Promise<string[]> => {
+        let arr: string[] = []
+        await chrome.storage.local.get(['key']).then((result) => {
+            if (result.key) {
+                arr = JSON.parse(result.key)
+            }
+        });
+        console.log('from Storage:',arr)
+        return arr;
+    };
 
     const handleAdd = (e: React.FormEvent): void => {
         e.preventDefault();
         if (todo) {
             setTodos([...todos, {id: Date.now(), todo, isDone: false}])
             setTodo('')
+            savedTodo.push(todo)
+            chrome.storage.local.set({key: JSON.stringify(savedTodo)}).then(() => console.log('saved to storage:', savedTodo))
+            getSavedTodo()
         }
     }
 

@@ -1,8 +1,9 @@
 {
     "manifest_version": 3,
-    "name": "To Do List",
-    "description": "A chrome extension that manages all your activities and thus serve as a todo list",
+    "name": "Taskify",
+    "description": "A chrome extension that manages all your activities and thus serves as a todo list",
     "version": "0.9.8",
+    "permissions": ["storage"],
     "action": {
         "default_popup": "popup.html"
     },
